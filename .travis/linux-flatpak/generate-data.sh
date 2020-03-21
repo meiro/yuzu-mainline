@@ -121,9 +121,6 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
                 "install -Dm644 ../appdata.xml /app/share/appdata/org.yuzu.$REPO_NAME.appdata.xml",
                 "desktop-file-install --dir=/app/share/applications ../dist/yuzu.desktop",
                 "sed -i 's/Name=yuzu/Name=$REPO_NAME_FRIENDLY/g' /app/share/applications/yuzu.desktop",
-                "echo 'StartupWMClass=yuzu' >> /app/share/applications/yuzu.desktop",
-                "install -Dm644 ../dist/yuzu.svg /app/share/icons/hicolor/scalable/apps/yuzu.svg",
-                "install -Dm644 ../dist/icon.png /app/share/icons/hicolor/512x512/apps/yuzu.png",
                 "mv /app/share/mime/packages/yuzu.xml /app/share/mime/packages/org.yuzu.$REPO_NAME.xml",
                 "sed 's/yuzu/org.yuzu.yuzu-nightly/g' -i /app/share/mime/packages/org.yuzu.$REPO_NAME.xml"
             ],
