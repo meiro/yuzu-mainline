@@ -5,10 +5,10 @@
 
 # Converts "yuzu-emu/yuzu-nightly" to "yuzu-nightly"
 REPO_NAME=$(echo $TRAVIS_REPO_SLUG | cut -d'/' -f 2)
-# Converts "yuzu-nightly" to "Citra Nightly"
+# Converts "yuzu-nightly" to "yuzu Nightly"
 REPO_NAME_FRIENDLY=$(echo $REPO_NAME | sed -e 's/-/ /g' -e 's/\b\(.\)/\u\1/g')
 
-# Generate the correct appdata.xml for the version of Citra we're building
+# Generate the correct appdata.xml for the version of yuzu we're building
 cat > /tmp/appdata.xml <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <application>
@@ -18,8 +18,8 @@ cat > /tmp/appdata.xml <<EOF
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0</project_license>
   <description>
-    <p>Citra is an experimental open-source Nintendo 3DS emulator/debugger written in C++. It is written with portability in mind, with builds actively maintained for Windows, Linux and macOS.</p>
-    <p>Citra emulates a subset of 3DS hardware and therefore is useful for running/debugging homebrew applications, and it is also able to run many commercial games! Some of these do not run at a playable state, but we are working every day to advance the project forward. (Playable here means compatibility of at least "Okay" on our game compatibility list.)</p>
+    <p>yuzu is an experimental open-source Nintendo 3DS emulator/debugger written in C++. It is written with portability in mind, with builds actively maintained for Windows, Linux and macOS.</p>
+    <p>yuzu emulates a subset of 3DS hardware and therefore is useful for running/debugging homebrew applications, and it is also able to run many commercial games! Some of these do not run at a playable state, but we are working every day to advance the project forward. (Playable here means compatibility of at least "Okay" on our game compatibility list.)</p>
   </description>
   <url type="homepage">https://yuzu-emu.org/</url>
   <url type="donation">https://yuzu-emu.org/donate/</url>
@@ -113,13 +113,14 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
                 "-DUSE_DISCORD_PRESENCE=ON"
             ],
             "cleanup": [
-              "/bin/yuzu",
+              "/bin/yuzu-cmd",
               "/share/man",
               "/share/pixmaps"
             ],
             "post-install": [
                 "install -Dm644 ../appdata.xml /app/share/appdata/org.yuzu.$REPO_NAME.appdata.xml",
                 "desktop-file-install --dir=/app/share/applications ../dist/yuzu.desktop",
+                "install -Dm644 ../dist/yuzu.svg /app/share/icons/hicolor/scalable/apps/yuzu.svg",
                 "sed -i 's/Name=yuzu/Name=$REPO_NAME_FRIENDLY/g' /app/share/applications/yuzu.desktop",
                 "mv /app/share/mime/packages/yuzu.xml /app/share/mime/packages/org.yuzu.$REPO_NAME.xml",
                 "sed 's/yuzu/org.yuzu.yuzu-nightly/g' -i /app/share/mime/packages/org.yuzu.$REPO_NAME.xml"
