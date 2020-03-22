@@ -29,7 +29,7 @@ gpg2 --import "$GPG_KEY"
 
 # Mount our flatpak repository
 mkdir -p "$REPO_DIR"
-sshfs "$FLATPAK_SSH_USER@$FLATPAK_SSH_HOSTNAME:$SSH_DIR" "$REPO_DIR" -C -p "$FLATPAK_SSH_PORT" -o IdentityFile="$SSH_KEY" -o "StrictHostKeyChecking=no"
+sshfs "$FLATPAK_SSH_USER@$FLATPAK_SSH_HOSTNAME:$SSH_DIR" "$REPO_DIR" -C -p "$FLATPAK_SSH_PORT" -o IdentityFile="$SSH_KEY" -o "StrictHostKeyChecking=no" -o ServerAliveInterval=60
 
 # DEBUGGING STUFF:
 ls -la $REPO_DIR
