@@ -34,11 +34,11 @@ sshfs "$FLATPAK_SSH_USER@$FLATPAK_SSH_HOSTNAME:$SSH_DIR" "$REPO_DIR" -C -p "$FLA
 # DEBUGGING STUFF:
 ls -la $REPO_DIR
 touch $REPO_DIR/TEST
-cat "TESTING" >> $REPO_DIR/TEST2
-cat "TESTING2" >> $REPO_DIR/TEST
+echo "TESTING" >> $REPO_DIR/TEST2
+echo "TESTING2" >> $REPO_DIR/TEST
 rm $REPO_DIR/TEST2
 rm $REPO_DIR/TEST
-exit
+
 # setup ccache location
 mkdir -p "$STATE_DIR"
 ln -sv --force /root/.ccache "$STATE_DIR/ccache"
