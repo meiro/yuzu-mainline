@@ -32,7 +32,12 @@ stages:
     - template: ./templates/sync-source.yml
       parameters:
         artifactSource: $(parameters.artifactSource)
-        needSubmodules: 'true'
+        needSubmodules: 'true'   
+    - template: ./templates/build-flatpak-single.yml
+      parameters:
+        artifactSource: 'false'
+        cache: 'true'
+        version: $(DisplayVersion)
         env:
           FLATPAK_ENC_IV: $(FLATPAK_ENC_IV)
           FLATPAK_ENC_K: $(FLATPAK_ENC_K)
@@ -42,8 +47,3 @@ stages:
           FLATPAK_SSH_PORT: $(FLATPAK_SSH_PORT)
           FLATPAK_SSH_PUBLIC_KEY: $(FLATPAK_SSH_PUBLIC_KEY)
           FLATPAK_SSH_USER: $(FLATPAK_SSH_USER)
-    - template: ./templates/build-single.yml
-      parameters:
-        artifactSource: 'false'
-        cache: 'true'
-        version: $(DisplayVersion)
