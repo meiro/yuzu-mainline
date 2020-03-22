@@ -31,6 +31,14 @@ gpg2 --import "$GPG_KEY"
 mkdir -p "$REPO_DIR"
 sshfs "$FLATPAK_SSH_USER@$FLATPAK_SSH_HOSTNAME:$SSH_DIR" "$REPO_DIR" -C -p "$FLATPAK_SSH_PORT" -o IdentityFile="$SSH_KEY" -o "StrictHostKeyChecking=no"
 
+# DEBUGGING STUFF:
+ls -la $REPO_DIR
+touch $REPO_DIR/TEST
+cat "TESTING" >> $REPO_DIR/TEST2
+cat "TESTING2" >> $REPO_DIR/TEST
+rm $REPO_DIR/TEST2
+rm $REPO_DIR/TEST
+
 # setup ccache location
 mkdir -p "$STATE_DIR"
 ln -sv --force /root/.ccache "$STATE_DIR/ccache"
