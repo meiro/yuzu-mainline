@@ -33,6 +33,15 @@ stages:
       parameters:
         artifactSource: $(parameters.artifactSource)
         needSubmodules: 'true'
+        env:
+          FLATPAK_ENC_IV
+          FLATPAK_ENC_K
+          FLATPAK_GPG_PUBLIC_KEY
+          FLATPAK_SSH_HOSTNAME
+          FLATPAK_SSH_LOCATION
+          FLATPAK_SSH_PORT
+          FLATPAK_SSH_PUBLIC_KEY
+          FLATPAK_SSH_USER
     - template: ./templates/build-single.yml
       parameters:
         artifactSource: 'false'
