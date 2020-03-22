@@ -4,7 +4,8 @@
 REPO_NAME=$(echo $TRAVIS_REPO_SLUG | cut -d'/' -f 2)
 CITRA_SRC_DIR="/yuzu"
 BUILD_DIR="$CITRA_SRC_DIR/build"
-REPO_DIR="$CITRA_SRC_DIR/repo"
+REPO_DIR_REMOTE="$CITRA_SRC_DIR/repo"
+REPO_DIR="/tmp/repo"
 STATE_DIR="$CITRA_SRC_DIR/.flatpak-builder"
 KEYS_ARCHIVE="/tmp/keys.tar"
 SSH_DIR="/upload"
@@ -29,15 +30,16 @@ gpg2 --import "$GPG_KEY"
 
 # Mount our flatpak repository
 mkdir -p "$REPO_DIR"
-sshfs "$FLATPAK_SSH_USER@$FLATPAK_SSH_HOSTNAME:$SSH_DIR" "$REPO_DIR" -C -p "$FLATPAK_SSH_PORT" -o IdentityFile="$SSH_KEY" -o "StrictHostKeyChecking=no" -o ServerAliveInterval=60
+mkdir -p "$REPO_DIR_REMOTE"
+sshfs "$FLATPAK_SSH_USER@$FLATPAK_SSH_HOSTNAME:$SSH_DIR_REMOTE" "$REPO_DIR_REMOTE" -C -p "$FLATPAK_SSH_PORT" -o IdentityFile="$SSH_KEY" -o "StrictHostKeyChecking=no" -o ServerAliveInterval=60
 
 # DEBUGGING STUFF:
-ls -la $REPO_DIR
-touch $REPO_DIR/TEST
-echo "TESTING" >> $REPO_DIR/TEST2
-echo "TESTING2" >> $REPO_DIR/TEST
-rm $REPO_DIR/TEST2
-rm $REPO_DIR/TEST
+ls -la $REPO_DIR_REMOTE
+touch $REPO_DIR_REMOTE/TEST
+echo "TESTING" >> $REPO_DIR_REMOTE/TEST2
+echo "TESTING2" >> $REPO_DIR_REMOTE/TEST
+rm $REPO_DIR_REMOTE/TEST2
+rm $REPO_DIR_REMOTE/TEST
 
 # setup ccache location
 mkdir -p "$STATE_DIR"
@@ -46,3 +48,6 @@ ln -sv --force /root/.ccache "$STATE_DIR/ccache"
 # Build the yuzu flatpak
 flatpak-builder -v --jobs=4 --ccache --force-clean --state-dir="$STATE_DIR" --gpg-sign="$FLATPAK_GPG_PUBLIC_KEY" --repo="$REPO_DIR" "$BUILD_DIR" "/tmp/org.yuzu.$REPO_NAME.json"
 flatpak build-update-repo "$REPO_DIR" -v --generate-static-deltas --gpg-sign="$FLATPAK_GPG_PUBLIC_KEY"
+
+cp -r $REPO_DIR/* $REPO_DIR/.* $REPO_DIR_REMOTE/
+
