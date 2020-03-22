@@ -38,7 +38,7 @@ cat "TESTING" >> $REPO_DIR/TEST2
 cat "TESTING2" >> $REPO_DIR/TEST
 rm $REPO_DIR/TEST2
 rm $REPO_DIR/TEST
-
+exit
 # setup ccache location
 mkdir -p "$STATE_DIR"
 ln -sv --force /root/.ccache "$STATE_DIR/ccache"
