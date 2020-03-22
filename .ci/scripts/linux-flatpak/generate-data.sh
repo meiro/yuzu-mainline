@@ -143,4 +143,4 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
 EOF
 
 # Call the script to build yuzu
-/bin/bash -ex /yuzu/.travis/linux-flatpak/docker.sh
+/bin/bash -ex /yuzu/.ci/scripts/linux-flatpak/docker.sh
