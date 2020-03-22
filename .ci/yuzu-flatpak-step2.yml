@@ -33,7 +33,7 @@ stages:
       parameters:
         artifactSource: $(parameters.artifactSource)
         needSubmodules: 'true'   
-    - template: ./templates/build-single.yml
+    - template: ./templates/build-flatpak-single.yml
       parameters:
         artifactSource: 'false'
         cache: 'true'
