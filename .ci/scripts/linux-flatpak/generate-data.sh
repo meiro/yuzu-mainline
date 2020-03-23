@@ -4,7 +4,7 @@
 # of yuzu we're building (nightly or canary)
 
 # Converts "yuzu-emu/yuzu-nightly" to "yuzu-nightly"
-REPO_NAME=$(echo $TRAVIS_REPO_SLUG | cut -d'/' -f 2)
+REPO_NAME=$(echo $AZURE_REPO_SLUG | cut -d'/' -f 2)
 # Converts "yuzu-nightly" to "yuzu Nightly"
 REPO_NAME_FRIENDLY=$(echo $REPO_NAME | sed -e 's/-/ /g' -e 's/\b\(.\)/\u\1/g')
 
@@ -18,8 +18,8 @@ cat > /tmp/appdata.xml <<EOF
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0</project_license>
   <description>
-    <p>yuzu is an experimental open-source Nintendo 3DS emulator/debugger written in C++. It is written with portability in mind, with builds actively maintained for Windows, Linux and macOS.</p>
-    <p>yuzu emulates a subset of 3DS hardware and therefore is useful for running/debugging homebrew applications, and it is also able to run many commercial games! Some of these do not run at a playable state, but we are working every day to advance the project forward. (Playable here means compatibility of at least "Okay" on our game compatibility list.)</p>
+    <p>TODO
+    <p>
   </description>
   <url type="homepage">https://yuzu-emu.org/</url>
   <url type="donation">https://yuzu-emu.org/donate/</url>
@@ -55,16 +55,16 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
         ],
         "env": {
             "CI": "$CI",
-            "TRAVIS": "$TRAVIS",
+            "AZURE": "$AZURE",
             "CONTINUOUS_INTEGRATION": "$CONTINUOUS_INTEGRATION",
-            "TRAVIS_BRANCH": "$TRAVIS_BRANCH",
-            "TRAVIS_BUILD_ID": "$TRAVIS_BUILD_ID",
-            "TRAVIS_BUILD_NUMBER": "$TRAVIS_BUILD_NUMBER",
-            "TRAVIS_COMMIT": "$TRAVIS_COMMIT",
-            "TRAVIS_JOB_ID": "$TRAVIS_JOB_ID",
-            "TRAVIS_JOB_NUMBER": "$TRAVIS_JOB_NUMBER",
-            "TRAVIS_REPO_SLUG": "$TRAVIS_REPO_SLUG",
-            "TRAVIS_TAG": "$TRAVIS_TAG"
+            "AZURE_BRANCH": "$AZURE_BRANCH",
+            "AZURE_BUILD_ID": "$AZURE_BUILD_ID",
+            "AZURE_BUILD_NUMBER": "$AZURE_BUILD_NUMBER",
+            "AZURE_COMMIT": "$AZURE_COMMIT",
+            "AZURE_JOB_ID": "$AZURE_JOB_ID",
+            "AZURE_JOB_NUMBER": "$AZURE_JOB_NUMBER",
+            "AZURE_REPO_SLUG": "$AZURE_REPO_SLUG",
+            "AZURE_TAG": "$AZURE_TAG"
         }
     },
     "finish-args": [
@@ -129,7 +129,7 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
                 {
                     "type": "git",
                     "url": "https://github.com/yuzu-emu/$REPO_NAME.git",
-                    "branch": "$TRAVIS_BRANCH",
+                    "branch": "$AZURE_BRANCH",
                     "disable-shallow-clone": true
                 },
                 {

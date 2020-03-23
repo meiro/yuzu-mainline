@@ -1,18 +1,18 @@
 #!/bin/bash -ex
 
 # Converts "yuzu-emu/yuzu-nightly" to "yuzu-nightly"
-REPO_NAME=$(echo $TRAVIS_REPO_SLUG | cut -d'/' -f 2)
-CITRA_SRC_DIR="/yuzu"
-BUILD_DIR="$CITRA_SRC_DIR/build"
-REPO_DIR="$CITRA_SRC_DIR/repo"
-STATE_DIR="$CITRA_SRC_DIR/.flatpak-builder"
+REPO_NAME=$(echo $AZURE_REPO_SLUG | cut -d'/' -f 2)
+YUZU_SRC_DIR="/yuzu"
+BUILD_DIR="$YUZU_SRC_DIR/build"
+REPO_DIR="$YUZU_SRC_DIR/repo"
+STATE_DIR="$YUZU_SRC_DIR/.flatpak-builder"
 KEYS_ARCHIVE="/tmp/keys.tar"
 SSH_DIR="/upload"
 SSH_KEY="/tmp/ssh.key"
 GPG_KEY="/tmp/gpg.key"
 
 # Extract keys
-openssl aes-256-cbc -K $FLATPAK_ENC_K -iv $FLATPAK_ENC_IV -in "$CITRA_SRC_DIR/keys.tar.enc" -out "$KEYS_ARCHIVE" -d
+openssl aes-256-cbc -K $FLATPAK_ENC_K -iv $FLATPAK_ENC_IV -in "$YUZU_SRC_DIR/keys.tar.enc" -out "$KEYS_ARCHIVE" -d
 tar -C /tmp -xvf $KEYS_ARCHIVE
 
 
@@ -30,14 +30,6 @@ gpg2 --import "$GPG_KEY"
 # Mount our flatpak repository
 mkdir -p "$REPO_DIR"
 sshfs "$FLATPAK_SSH_USER@$FLATPAK_SSH_HOSTNAME:$SSH_DIR" "$REPO_DIR" -C -p "$FLATPAK_SSH_PORT" -o IdentityFile="$SSH_KEY" -o "StrictHostKeyChecking=no" -o ServerAliveInterval=60 -o "reconnect" -o "auto_cache" -o "no_readahead" -o "cache=yes" -o "kernel_cache" -o "Compression=no"
-
-# DEBUGGING STUFF:
-ls -la $REPO_DIR
-touch $REPO_DIR/TEST
-echo "TESTING" >> $REPO_DIR/TEST2
-echo "TESTING2" >> $REPO_DIR/TEST
-rm $REPO_DIR/TEST2
-rm $REPO_DIR/TEST
 
 # setup ccache location
 mkdir -p "$STATE_DIR"
