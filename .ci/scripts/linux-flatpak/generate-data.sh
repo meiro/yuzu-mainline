@@ -109,7 +109,7 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DYUZU_USE_BUNDLED_UNICORN=ON",
-                "-DCITRA_ENABLE_COMPATIBILITY_REPORTING=ON",
+                "-DYUZU_ENABLE_COMPATIBILITY_REPORTING=ON",
                 "-DUSE_DISCORD_PRESENCE=ON"
             ],
             "cleanup": [
