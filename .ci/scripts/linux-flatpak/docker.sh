@@ -11,6 +11,8 @@ SSH_DIR="/upload"
 SSH_KEY="/tmp/ssh.key"
 GPG_KEY="/tmp/gpg.key"
 
+/bin/bash -ex $YUZU_SRC_DIR/.ci/scripts/linux-flatpak/generate-data.sh $1
+
 # Extract keys
 openssl aes-256-cbc -K $FLATPAK_ENC_K -iv $FLATPAK_ENC_IV -in "$YUZU_SRC_DIR/keys.tar.enc" -out "$KEYS_ARCHIVE" -d
 tar -C /tmp -xvf $KEYS_ARCHIVE
