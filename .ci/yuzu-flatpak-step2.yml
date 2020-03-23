@@ -10,8 +10,7 @@ stages:
   jobs:
   - job: format
     displayName: 'clang'
-    pool:
-      vmImage: ubuntu-latest
+    pool: 'self-hosted'
     steps:
     - template: ./templates/format-check.yml
 - stage: build
@@ -20,8 +19,7 @@ stages:
   jobs:
   - job: build
     displayName: 'standard'
-    pool:
-      vmImage: ubuntu-latest
+    pool: 'self-hosted'
     strategy:
       maxParallel: 10
       matrix:
