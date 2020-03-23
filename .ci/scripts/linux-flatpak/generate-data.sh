@@ -107,10 +107,14 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
             "buildsystem": "cmake-ninja",
             "builddir": true,
             "config-opts": [
-                "-DCMAKE_BUILD_TYPE=Release",
+		"-DDISPLAY_VERSION=$1",
                 "-DYUZU_USE_BUNDLED_UNICORN=ON",
+		"-DYUZU_USE_QT_WEB_ENGINE=ON",
+                "-DCMAKE_BUILD_TYPE=Release",
                 "-DYUZU_ENABLE_COMPATIBILITY_REPORTING=ON",
-                "-DUSE_DISCORD_PRESENCE=ON"
+		"-DENABLE_COMPATIBILITY_LIST_DOWNLOAD=ON",	
+                "-DUSE_DISCORD_PRESENCE=ON",
+		"-DENABLE_VULKAN=No"
             ],
             "cleanup": [
               "/bin/yuzu-cmd",
