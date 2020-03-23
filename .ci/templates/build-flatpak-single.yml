@@ -35,6 +35,3 @@ steps:
     TRAVIS_TAG: $(Build.SourceVersion)
 - script: chmod a+x ./.ci/scripts/$(ScriptFolder)/upload.sh && RELEASE_NAME=$(BuildName) ./.ci/scripts/$(ScriptFolder)/upload.sh
   displayName: 'Package Artifacts'
-- publish: artifacts
-  artifact: 'yuzu-$(BuildName)-$(BuildSuffix)'
-  displayName: 'Upload Artifacts'
