@@ -18,8 +18,7 @@ cat > /tmp/appdata.xml <<EOF
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0</project_license>
   <description>
-    <p>TODO
-    <p>
+    <p>TODO</p>
   </description>
   <url type="homepage">https://yuzu-emu.org/</url>
   <url type="donation">https://yuzu-emu.org/donate/</url>
