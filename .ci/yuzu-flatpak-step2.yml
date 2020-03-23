@@ -10,7 +10,7 @@ stages:
   jobs:
   - job: format
     displayName: 'clang'
-    pool: 'self-hosted'
+    pool: 'Self Hosted'
     steps:
     - template: ./templates/format-check.yml
 - stage: build
@@ -19,7 +19,7 @@ stages:
   jobs:
   - job: build
     displayName: 'standard'
-    pool: 'self-hosted'
+    pool: 'Self Hosted'
     strategy:
       maxParallel: 10
       matrix:
