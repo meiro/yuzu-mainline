@@ -108,7 +108,7 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
             "config-opts": [
 		"-DDISPLAY_VERSION=$1",
                 "-DYUZU_USE_BUNDLED_UNICORN=ON",
-		"-DYUZU_USE_QT_WEB_ENGINE=ON",
+		"-DYUZU_USE_QT_WEB_ENGINE=OFF",
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DYUZU_ENABLE_COMPATIBILITY_REPORTING=ON",
 		"-DENABLE_COMPATIBILITY_LIST_DOWNLOAD=ON",	
