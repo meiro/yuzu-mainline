@@ -1,5 +1,4 @@
 parameters:
-  artifactSource: 'true'
   cache: 'false'
   version: ''
 
@@ -33,6 +32,5 @@ steps:
     AZURE_JOB_NUMBER: $(System.JobName)
     AZURE_REPO_SLUG: $(Build.Repository.Name)
     AZURE_TAG: $(Build.SourceVersion)
-- script: chmod a+x ./.ci/scripts/$(ScriptFolder)/upload.sh && RELEASE_NAME=$(BuildName) ./.ci/scripts/$(ScriptFolder)/upload.sh
-  displayName: 'Package Artifacts'
 - script: chmod a+x ./.ci/scripts/$(ScriptFolder)/finish.sh && RELEASE_NAME=$(BuildName) ./.ci/scripts/$(ScriptFolder)/finish.sh
+  displayName: 'Clean up'
