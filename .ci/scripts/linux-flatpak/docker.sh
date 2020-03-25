@@ -33,7 +33,8 @@ gpg2 --import "$GPG_KEY"
 # -o reconnect and -o ServerAliveInterval ensure that 
 # the share stays active during long flatpak builds
 mkdir -p "$REPO_DIR"
-sshfs "$FLATPAK_SSH_USER@$FLATPAK_SSH_HOSTNAME:$SSH_DIR" "$REPO_DIR" -C -p "$FLATPAK_SSH_PORT" -o IdentityFile="$SSH_KEY" -o ServerAliveInterval=60 -o "reconnect"
+sshfs "$FLATPAK_SSH_USER@$FLATPAK_SSH_HOSTNAME:$SSH_DIR" "$REPO_DIR" -C -p "$FLATPAK_SSH_PORT" -o IdentityFile="$SSH_KEY" -o ServerAliveInterval=60 -o "reconnect" -o auto_cache -o no_readahead
+
 
 # setup ccache location
 mkdir -p "$STATE_DIR"
