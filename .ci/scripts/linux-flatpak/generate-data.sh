@@ -18,7 +18,10 @@ cat > /tmp/appdata.xml <<EOF
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0</project_license>
   <description>
-    <p>TODO</p>
+    <p>yuzu is an experimental open-source emulator for the Nintendo Switch from the creators of Citra.</p>
+    <p>It is written in C++ with portability in mind, with builds actively maintained for Windows and Linux. The emulator is currently only useful for homebrew development and research purposes.</p>
+    <p>yuzu only emulates a subset of Switch hardware and therefore is generally only useful for running/debugging homebrew applications. At this time, yuzu cannot play a majority of commercial games without major problems. yuzu can boot some commercial Switch games to varying degrees of success, but your experience may vary between games and for different combinations of host hardware.</p>
+    <p>yuzu is licensed under the GPLv2 (or any later version). Refer to the license.txt file included.</p>
   </description>
   <url type="homepage">https://yuzu-emu.org/</url>
   <url type="donation">https://yuzu-emu.org/donate/</url>
