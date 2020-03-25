@@ -116,7 +116,7 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
                 "-DYUZU_ENABLE_COMPATIBILITY_REPORTING=ON",
 		"-DENABLE_COMPATIBILITY_LIST_DOWNLOAD=ON",	
                 "-DUSE_DISCORD_PRESENCE=ON",
-		"-DENABLE_VULKAN=No"
+		"-DENABLE_VULKAN=Yes"
             ],
             "cleanup": [
               "/bin/yuzu-cmd",
