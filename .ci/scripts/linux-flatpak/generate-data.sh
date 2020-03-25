@@ -14,7 +14,7 @@ cat > /tmp/appdata.xml <<EOF
 <application>
   <id type="desktop">org.yuzu.$REPO_NAME.desktop</id>
   <name>$REPO_NAME_FRIENDLY</name>
-  <summary>Nintendo 3DS emulator</summary>
+  <summary>Nintendo Switch emulator</summary>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-2.0</project_license>
   <description>
@@ -25,10 +25,10 @@ cat > /tmp/appdata.xml <<EOF
   <url type="bugtracker">https://github.com/yuzu-emu/yuzu/issues</url>
   <url type="faq">https://yuzu-emu.org/wiki/faq/</url>
   <url type="help">https://yuzu-emu.org/wiki/home/</url>
-  <screenshot>https://raw.githubusercontent.com/yuzu-emu/yuzu-web/master/site/static/images/screenshots/01-Super%20Mario%203D%20Land.jpg</screenshot>
-  <screenshot>https://raw.githubusercontent.com/yuzu-emu/yuzu-web/master/site/static/images/screenshots/02-Mario%20Kart%207.jpg</screenshot>
-  <screenshot>https://raw.githubusercontent.com/yuzu-emu/yuzu-web/master/site/static/images/screenshots/28-The%20Legend%20of%20Zelda%20Ocarina%20of%20Time%203D.jpg</screenshot>
-  <screenshot>https://raw.githubusercontent.com/yuzu-emu/yuzu-web/master/site/static/images/screenshots/35-Pok%C3%A9mon%20ORAS.png</screenshot>
+  <screenshot>https://yuzu-emu.org/images/screenshots/001-Super%20Mario%20Odyssey.png</screenshot>
+  <screenshot>https://yuzu-emu.org/images/screenshots/004-Super%20Mario%20Odyssey.png</screenshot>
+  <screenshot>https://yuzu-emu.org/images/screenshots/019-Pokken%20Tournament.png</screenshot>
+  <screenshot>https://yuzu-emu.org/images/screenshots/052-Pokemon%20Let%27s%20Go.png</screenshot>
   <categories>
     <category>Games</category>
     <category>Emulator</category>
