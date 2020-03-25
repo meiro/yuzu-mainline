@@ -3,9 +3,9 @@
 # needed to define application metadata and build yuzu depending on what version
 # of yuzu we're building (nightly or canary)
 
-# Converts "yuzu-emu/yuzu-nightly" to "yuzu-nightly"
+# Converts "yuzu-emu/yuzu-release" to "yuzu-release"
 REPO_NAME=$(echo $AZURE_REPO_SLUG | cut -d'/' -f 2)
-# Converts "yuzu-nightly" to "yuzu Nightly"
+# Converts "yuzu-release" to "yuzu Release"
 REPO_NAME_FRIENDLY=$(echo $REPO_NAME | sed -e 's/-/ /g' -e 's/\b\(.\)/\u\1/g')
 
 # Generate the correct appdata.xml for the version of yuzu we're building
