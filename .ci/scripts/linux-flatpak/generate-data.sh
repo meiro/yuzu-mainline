@@ -44,7 +44,7 @@ EOF
 cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
 {
     "app-id": "org.yuzu.$REPO_NAME",
-    "runtime": "org.kde.Platform",
+    "runtime": "org.kde.Sdk",
     "runtime-version": "5.13",
     "sdk": "org.kde.Sdk",
     "command": "yuzu",
