@@ -47,7 +47,7 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
     "runtime": "org.kde.Sdk",
     "runtime-version": "5.13",
     "sdk": "org.kde.Sdk",
-    "command": "yuzu",
+    "command": "yuzu-wrapper",
     "rename-desktop-file": "yuzu.desktop",
     "rename-icon": "yuzu",
     "rename-appdata-file": "org.yuzu.$REPO_NAME.appdata.xml",
@@ -77,7 +77,8 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
         "--share=ipc",
         "--filesystem=xdg-config/yuzu-emu:create",
         "--filesystem=xdg-data/yuzu-emu:create",
-        "--filesystem=host:ro"
+        "--filesystem=host:ro",	
+        "--filesystem=xdg-run/app/com.discordapp.Discord:create"
     ],
     "modules": [
     {
@@ -129,7 +130,9 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
                 "install -Dm644 ../dist/yuzu.svg /app/share/icons/hicolor/scalable/apps/yuzu.svg",
                 "sed -i 's/Name=yuzu/Name=$REPO_NAME_FRIENDLY/g' /app/share/applications/yuzu.desktop",
                 "mv /app/share/mime/packages/yuzu.xml /app/share/mime/packages/org.yuzu.$REPO_NAME.xml",
-                "sed 's/yuzu/org.yuzu.yuzu-nightly/g' -i /app/share/mime/packages/org.yuzu.$REPO_NAME.xml"
+                "sed 's/yuzu/org.yuzu.yuzu-nightly/g' -i /app/share/mime/packages/org.yuzu.$REPO_NAME.xml",
+                "install -D $FLATPAK_BUILDER_BUILDDIR/yuzu-wrapper /app/bin/yuzu-wrapper",
+                "desktop-file-edit --set-key=Exec --set-value='/app/bin/yuzu-wrapper %f' /app/share/applications/yuzu.desktop"
             ],
             "sources": [
                 {
@@ -141,6 +144,16 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
                 {
                     "type": "file",
                     "path": "/tmp/appdata.xml"
+                },
+                {
+                    "type": "script",
+                    "commands": [
+                        "for i in {0..9}; do",
+                        "test -S \$XDG_RUNTIME_DIR/discord-ipc-\$i || ln -sf {app/com.discordapp.Discord,\$XDG_RUNTIME_DIR}/discord-ipc-\$i;",
+                        "done",
+                        "yuzu \$@"
+                    ],
+                    "dest-filename": "yuzu-wrapper"
                 }
             ]
         }
