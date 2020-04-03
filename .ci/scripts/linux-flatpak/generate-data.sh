@@ -100,6 +100,7 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
             "--enable-unicode=ucs4"
         ],
         "post-install": [
+            "chmod 644 \$FLATPAK_DEST/lib/libpython2.7.so.1.0"
         ],
         "cleanup": [
             "'*'"
@@ -131,7 +132,7 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
                 "sed -i 's/Name=yuzu/Name=$REPO_NAME_FRIENDLY/g' /app/share/applications/yuzu.desktop",
                 "mv /app/share/mime/packages/yuzu.xml /app/share/mime/packages/org.yuzu.$REPO_NAME.xml",
                 "sed 's/yuzu/org.yuzu.yuzu-nightly/g' -i /app/share/mime/packages/org.yuzu.$REPO_NAME.xml",
-                "install -D yuzu-wrapper /app/bin/",
+                "install -D \$FLATPAK_BUILDER_BUILDDIR/yuzu-wrapper /app/bin/yuzu-wrapper",
                 "desktop-file-edit --set-key=Exec --set-value='/app/bin/yuzu-wrapper %f' /app/share/applications/yuzu.desktop"
             ],
             "sources": [
@@ -149,9 +150,9 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
                     "type": "script",
                     "commands": [
                         "for i in {0..9}; do",
-                        "test -S \$XDG_RUNTIME_DIR/discord-ipc-\$i || ln -sf {app/com.discordapp.Discord,\$XDG_RUNTIME_DIR}/discord-ipc-\$i;",
+                        "test -S \\\$XDG_RUNTIME_DIR/discord-ipc-\\\$i || ln -sf {app/com.discordapp.Discord,\\\$XDG_RUNTIME_DIR}/discord-ipc-\\\$i;",
                         "done",
-                        "yuzu \$@"
+                        "yuzu \\\$@"
                     ],
                     "dest-filename": "yuzu-wrapper"
                 }
