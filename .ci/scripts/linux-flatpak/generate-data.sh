@@ -132,7 +132,7 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
                 "sed -i 's/Name=yuzu/Name=$REPO_NAME_FRIENDLY/g' /app/share/applications/yuzu.desktop",
                 "mv /app/share/mime/packages/yuzu.xml /app/share/mime/packages/org.yuzu.$REPO_NAME.xml",
                 "sed 's/yuzu/org.yuzu.yuzu-nightly/g' -i /app/share/mime/packages/org.yuzu.$REPO_NAME.xml",
-                "install -D \$FLATPAK_BUILDER_BUILDDIR/yuzu-wrapper /app/bin/yuzu-wrapper",
+                'install -D \$FLATPAK_BUILDER_BUILDDIR/yuzu-wrapper /app/bin/yuzu-wrapper',
                 "desktop-file-edit --set-key=Exec --set-value='/app/bin/yuzu-wrapper %f' /app/share/applications/yuzu.desktop"
             ],
             "sources": [
