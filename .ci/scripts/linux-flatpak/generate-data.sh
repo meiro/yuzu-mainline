@@ -39,6 +39,13 @@ cat > /tmp/appdata.xml <<EOF
 </application>
 EOF
 
+cat > /tmp/yuzu-wrapper <<EOF
+for i in {0..9}; do
+    test -S \$XDG_RUNTIME_DIR/discord-ipc-\$i || ln -sf {app/com.discordapp.Discord,\$XDG_RUNTIME_DIR}/discord-ipc-\$i;
+done
+yuzu \$@
+EOF
+
 # Generate the yuzu flatpak manifest, appending certain variables depending on
 # whether we're building nightly or canary.
 cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
@@ -132,7 +139,7 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
                 "sed -i 's/Name=yuzu/Name=$REPO_NAME_FRIENDLY/g' /app/share/applications/yuzu.desktop",
                 "mv /app/share/mime/packages/yuzu.xml /app/share/mime/packages/org.yuzu.$REPO_NAME.xml",
                 "sed 's/yuzu/org.yuzu.yuzu-nightly/g' -i /app/share/mime/packages/org.yuzu.$REPO_NAME.xml",
-                'install -D \$FLATPAK_BUILDER_BUILDDIR/yuzu-wrapper /app/bin/yuzu-wrapper',
+                'install -D ../yuzu-wrapper /app/bin/yuzu-wrapper',
                 "desktop-file-edit --set-key=Exec --set-value='/app/bin/yuzu-wrapper %f' /app/share/applications/yuzu.desktop"
             ],
             "sources": [
@@ -147,14 +154,8 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
                     "path": "/tmp/appdata.xml"
                 },
                 {
-                    "type": "script",
-                    "commands": [
-                        "for i in {0..9}; do",
-                        "test -S \\\$XDG_RUNTIME_DIR/discord-ipc-\\\$i || ln -sf {app/com.discordapp.Discord,\\\$XDG_RUNTIME_DIR}/discord-ipc-\\\$i;",
-                        "done",
-                        "yuzu \\\$@"
-                    ],
-                    "dest-filename": "yuzu-wrapper"
+                    "type": "file",
+                    "path": "/tmp/yuzu-wrapper"
                 }
             ]
         }
