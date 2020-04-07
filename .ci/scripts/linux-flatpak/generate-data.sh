@@ -40,9 +40,22 @@ cat > /tmp/appdata.xml <<EOF
 EOF
 
 cat > /tmp/yuzu-wrapper <<EOF
-for i in {0..9}; do
-    test -S \$XDG_RUNTIME_DIR/discord-ipc-\$i || ln -sf {app/com.discordapp.Discord,\$XDG_RUNTIME_DIR}/discord-ipc-\$i;
+#!/bin/bash
+
+# Discord only accepts activity updates from pids >= 10
+for i in 1 2 3 .. 20
+do
+	# Spawn a new shell
+	# This guarantees that a new process is created (unlike with potential bash internals like echo etc.)
+	bash -c "true"
+	sleep 0
 done
+
+# Symlink com.discordapp.Discord ipc pipes if they do not exist yet
+for i in {0..9}; do
+    test -S \$XDG_RUNTIME_DIR/app/com.discordapp.Discord/discord-ipc-\$i && ln -sf {\$XDG_RUNTIME_DIR/app/com.discordapp.Discord,\$XDG_RUNTIME_DIR}/discord-ipc-\$i;
+done
+
 yuzu \$@
 EOF
 
@@ -85,7 +98,8 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
         "--filesystem=xdg-config/yuzu-emu:create",
         "--filesystem=xdg-data/yuzu-emu:create",
         "--filesystem=host:ro",	
-        "--filesystem=xdg-run/app/com.discordapp.Discord:create"
+        "--filesystem=xdg-run/app/com.discordapp.Discord:create",
+        "--filesystem=xdg-run/discord-ipc-0:rw"
     ],
     "modules": [
     {
