@@ -99,7 +99,16 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
         "--filesystem=xdg-data/yuzu-emu:create",
         "--filesystem=host:ro",	
         "--filesystem=xdg-run/app/com.discordapp.Discord:create",
-        "--filesystem=xdg-run/discord-ipc-0:rw"
+        "--filesystem=xdg-run/discord-ipc-0:rw",
+        "--filesystem=xdg-run/discord-ipc-1:rw",
+        "--filesystem=xdg-run/discord-ipc-2:rw",
+        "--filesystem=xdg-run/discord-ipc-3:rw",
+        "--filesystem=xdg-run/discord-ipc-4:rw",
+        "--filesystem=xdg-run/discord-ipc-5:rw",
+        "--filesystem=xdg-run/discord-ipc-6:rw",
+        "--filesystem=xdg-run/discord-ipc-7:rw",
+        "--filesystem=xdg-run/discord-ipc-8:rw",
+        "--filesystem=xdg-run/discord-ipc-9:rw"
     ],
     "modules": [
     {
