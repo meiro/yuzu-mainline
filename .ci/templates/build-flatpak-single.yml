@@ -31,6 +31,6 @@ steps:
     AZURE_JOB_NUMBER: $(System.JobName)
     AZURE_REPO_SLUG: $(Build.Repository.Name)
     AZURE_TAG: $(Build.SourceVersion)
-- script: chmod a+x ./.ci/scripts/$(ScriptFolder)/finish.sh && RELEASE_NAME=$(BuildName) ./.ci/scripts/$(ScriptFolder)/finish.sh
+- script: chmod a+x ./.ci/scripts/$(ScriptFolder)/finish.sh && ./.ci/scripts/$(ScriptFolder)/finish.sh
   condition: always()
   displayName: 'Clean up'
