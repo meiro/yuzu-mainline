@@ -1,7 +1,7 @@
 #!/bin/bash -ex
 
-# Converts "yuzu-emu/yuzu-release" to "yuzu-release"
-REPO_NAME=$(echo $AZURE_REPO_NAME | cut -d'/' -f 2)
+# Converts "yuzu-emu/yuzu-nightly" to "yuzu-nightly"
+REPO_NAME=$(echo $AZURE_REPO_SLUG | cut -d'/' -f 2)
 YUZU_SRC_DIR="/yuzu"
 BUILD_DIR="$YUZU_SRC_DIR/build"
 REPO_DIR="$YUZU_SRC_DIR/repo"

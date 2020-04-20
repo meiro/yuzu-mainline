@@ -4,7 +4,7 @@
 # of yuzu we're building (nightly or canary)
 
 # Converts "yuzu-emu/yuzu-release" to "yuzu-release"
-REPO_NAME=$(echo $AZURE_REPO_NAME | cut -d'/' -f 2)
+REPO_NAME=$(echo $AZURE_REPO_SLUG | cut -d'/' -f 2)
 # Converts "yuzu-release" to "yuzu Release"
 REPO_NAME_FRIENDLY=$(echo $REPO_NAME | sed -e 's/-/ /g' -e 's/\b\(.\)/\u\1/g')
 
@@ -85,7 +85,7 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
             "AZURE_COMMIT": "$AZURE_COMMIT",
             "AZURE_JOB_ID": "$AZURE_JOB_ID",
             "AZURE_JOB_NUMBER": "$AZURE_JOB_NUMBER",
-            "AZURE_REPO_NAME": "$AZURE_REPO_NAME",
+            "AZURE_REPO_SLUG": "$AZURE_REPO_SLUG",
             "AZURE_TAG": "$AZURE_TAG"
         }
     },
