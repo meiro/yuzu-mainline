@@ -23,6 +23,8 @@ steps:
     FLATPAK_SSH_PORT: $(FLATPAK_SSH_PORT)
     FLATPAK_SSH_PUBLIC_KEY: $(FLATPAK_SSH_PUBLIC_KEY)
     FLATPAK_SSH_USER: $(FLATPAK_SSH_USER)
+    CI: 'true'
+    AZURE: 'true'
     AZURE_BRANCH: $(Build.SourceBranch)
     AZURE_BUILD_ID: $(Build.BuildId)
     AZURE_BUILD_NUMBER: $(Build.BuildNumber)
