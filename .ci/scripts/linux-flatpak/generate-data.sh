@@ -76,9 +76,6 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
             "--share=network"
         ],
         "env": {
-            "CI": "$CI",
-            "AZURE": "$AZURE",
-            "CONTINUOUS_INTEGRATION": "$CONTINUOUS_INTEGRATION",
             "AZURE_BRANCH": "$AZURE_BRANCH",
             "AZURE_BUILD_ID": "$AZURE_BUILD_ID",
             "AZURE_BUILD_NUMBER": "$AZURE_BUILD_NUMBER",
