@@ -28,7 +28,6 @@ steps:
     AZURE_BUILD_NUMBER: $(Build.BuildNumber)
     AZURE_COMMIT: $(Build.SourceVersion)
     AZURE_JOB_ID: $(System.JobId)
-    AZURE_JOB_NUMBER: $(System.JobName)
     AZURE_REPO_SLUG: $(Build.Repository.Name)
     AZURE_TAG: $(Build.SourceVersion)
 - script: chmod a+x ./.ci/scripts/$(ScriptFolder)/finish.sh && ./.ci/scripts/$(ScriptFolder)/finish.sh

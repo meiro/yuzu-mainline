@@ -84,7 +84,6 @@ cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
             "AZURE_BUILD_NUMBER": "$AZURE_BUILD_NUMBER",
             "AZURE_COMMIT": "$AZURE_COMMIT",
             "AZURE_JOB_ID": "$AZURE_JOB_ID",
-            "AZURE_JOB_NUMBER": "$AZURE_JOB_NUMBER",
             "AZURE_REPO_SLUG": "$AZURE_REPO_SLUG",
             "AZURE_TAG": "$AZURE_TAG"
         }
