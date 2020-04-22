@@ -1,7 +1,6 @@
 #!/bin/bash -ex
 # This script generates the appdata.xml and org.yuzu.$REPO_NAME.json files
-# needed to define application metadata and build yuzu depending on what version
-# of yuzu we're building (nightly or canary)
+# needed to define application metadata and build yuzu
 
 # Converts "yuzu-emu/yuzu-release" to "yuzu-release"
 REPO_NAME=$(echo $AZURE_REPO_SLUG | cut -d'/' -f 2)
@@ -59,8 +58,7 @@ done
 yuzu \$@
 EOF
 
-# Generate the yuzu flatpak manifest, appending certain variables depending on
-# whether we're building nightly or canary.
+# Generate the yuzu flatpak manifest
 cat > /tmp/org.yuzu.$REPO_NAME.json <<EOF
 {
     "app-id": "org.yuzu.$REPO_NAME",
